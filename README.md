@@ -63,12 +63,15 @@ VITE_API_URL=http://localhost:8080/api
 
 ```
 src/
-├── components/
-│   ├── TacheList.jsx   # liste des taches
-│   └── TacheForm.jsx   # formulaire creation / modification
+├── components/              # les composant reutilisable
+│   ├── TacheList.jsx           # tableau des taches
+├── pages/                   # les vues
+│   ├── index.jsx              # liste des taches
+│   ├── form.jsx               # creation et modification
+│   └── show.jsx               # fiche d'une tâche
 ├── services/
-│   └── api.js          # consomme l'API java spring boot
-├── App.jsx             # composant racine, gestion de l'état global
+│   └── api.js          # consomme l'API java spring boot (communication HTTP)
+├── App.jsx             # deviens le routeur
 ├── index.css           
 └── main.jsx            # point d'entree de React
 ```
