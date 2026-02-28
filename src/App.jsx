@@ -35,15 +35,13 @@ function App() {
     };
 
     return (
-        <div>
-            <h1>ToDo List</h1>
-
+        <div className="container">
+            <h1 className="mb-4 text-center">ToDo List</h1>
             <TacheForm
                 onSubmit={handleSubmit}
                 tacheEnEdition={tacheEnEdition}
                 onAnnuler={() => setTacheEnEdition(null)}
             />
-
             <TacheList
                 taches={taches}
                 onEdit={setTacheEnEdition}

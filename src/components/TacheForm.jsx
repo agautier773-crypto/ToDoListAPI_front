@@ -23,33 +23,63 @@ function TacheForm({ onSubmit, tacheEnEdition, onAnnuler }) {
     };
 
     // generation du HTML
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-                name="titre"
-                placeholder="Titre"
-                value={form.titre}
-                onChange={handleChange}
-                required
-            />
-            <input
-                name="description"
-                placeholder="Description"
-                value={form.description ?? ""}
-                onChange={handleChange}
-            />
-            <select name="statut" value={form.statut} onChange={handleChange}>
-                <option value="A_FAIRE">À faire</option>
-                <option value="EN_COURS">En cours</option>
-                <option value="TERMINE">Terminé</option>
-            </select>
-            <button type="submit">
-                {tacheEnEdition ? "Modifier" : "Ajouter"}
-            </button>
-            {tacheEnEdition && (
-                <button type="button" onClick={onAnnuler}>Annuler</button>
-            )}
-        </form>
+return (
+        <div className="card mb-4">
+            <div className="card-body">
+                <h5 className="card-title">
+                    {tacheEnEdition ? "Modifier la tâche" : "Nouvelle tâche"}
+                </h5>
+                <form onSubmit={handleSubmit}>
+                    <div className="row g-2">
+                        <div className="col-md-4">
+                            <input
+                                className="form-control"
+                                name="titre"
+                                placeholder="Titre"
+                                value={form.titre}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="col-md-4">
+                            <input
+                                className="form-control"
+                                name="description"
+                                placeholder="Description"
+                                value={form.description ?? ""}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="col-md-2">
+                            <select
+                                className="form-select"
+                                name="statut"
+                                value={form.statut}
+                                onChange={handleChange}
+                            >
+                                <option value="A_FAIRE">À faire</option>
+                                <option value="EN_COURS">En cours</option>
+                                <option value="TERMINE">Terminé</option>
+                            </select>
+                        </div>
+                        <div className="col-md-2 d-flex gap-2">
+                            <button className="btn btn-primary w-100" type="submit">
+                                {tacheEnEdition ? "Modifier" : "Ajouter"}
+                            </button>
+                            {tacheEnEdition && (
+                                <button
+                                    className="btn btn-secondary w-100"
+                                    type="button"
+                                    onClick={onAnnuler}
+                                >
+                                    Annuler
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     );
 }
 
