@@ -13,11 +13,13 @@ export default function Login() {
                 method: "POST",
                 body: JSON.stringify(form),
             });
+            alert("Status reçu : " + res.status);
             if (!res.ok) throw new Error();
             const data = await res.json();
             localStorage.setItem("token", data.token);
             navigate("/taches");
         } catch {
+            alert("Erreur réelle : " + err.message);
             alert("Identifiants invalides");
         }
     };
