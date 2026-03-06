@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { tacheService } from "../../services/api.js";
+import {tacheService as categorieService, tacheService} from "../../services/api.js";
 
 const FORM_VIDE = { titre: "", description: "", statut: "A_FAIRE", categorie: { id: 1 } };
 
@@ -8,8 +8,12 @@ function TacheFormPage() {
     const { id } = useParams();         // undefined si creation, sinon id de la tâche
     const navigate = useNavigate();
     const [form, setForm] = useState(FORM_VIDE);
+    const [categories, setCategories] = useState([]);
     const isEditing = !!id;             // vrai si on est sur /taches/:id/edit
 
+    useEffect(() => {
+        categorieService.getAll().then(setCategories);
+    })
     // Si édition → pré-remplir le formulaire
     useEffect(() => {
         if (isEditing) {
@@ -71,6 +75,17 @@ function TacheFormPage() {
                                 <option value="A_FAIRE">À faire</option>
                                 <option value="EN_COURS">En cours</option>
                                 <option value="TERMINE">Terminé</option>
+                            </select>
+                            <select
+                                name="categorie"
+                                value={form.categorie.id}
+                                onChange={handleChange}
+                            >
+                                {categories.map((cat) => (
+                                    <option key={cat.id} value={cat.id}>
+                                        {cat.nom}
+                                    </option>
+                                    ))}
                             </select>
                         </div>
                         <div className="d-flex gap-2">
